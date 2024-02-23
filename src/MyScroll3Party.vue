@@ -58,7 +58,6 @@ export default {
 
   methods: {
     async load($state) {
-      console.log('testing')
       console.log("loading...");
       try {
         const response = await fetch("https://jsonplaceholder.typicode.com/comments?_limit=10&_page=" + this.page);

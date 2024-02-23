@@ -1,86 +1,101 @@
-<template>
-  <input v-model="text" @keyup.enter="do_search">{{ page }}
-  <br />
+<style scoped>
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  margin: 20px auto 20px auto;
+  max-height: calc(100vh - 100px);
+  /* max-height: calc(100vh - 100px); */
+  /* max-width: 400px; */
+  max-width: 100%;
+  /* overflow-y: scroll; */
+  overflow-y: auto;
+}
 
-  <ul class="container" ref="containerRef" @scroll="handleScroll">
-    <li v-for="item of favs">
-      {{ item.title }}
-      <br />
-      <a href="item.url" target="_blank">{{ item.title }}</a>
-    </li>
-    <li v-if="loading">Loading...</li>
-  </ul>
+.result {
+  font-weight: 300;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  background: #eceef0;
+  border-radius: 10px;
+}
+
+#favheader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
+
+<template>
+  <div id="favheader">
+    <input v-model="text" @keyup.enter="do_search"  style="width: 78%;">{{ page }}
+  </div>
+  
+
+  <div id="container">
+    <div class="result" v-for="fav in favs" :key="fav.id">
+      <div>{{ fav.title }}</div>
+      <div>{{ fav.url }}</div>
+    </div>
+    <infinite-loading target="#container" @infinite="load"></infinite-loading>
+  </div>
 </template>
 
 
 
 <script>
+import InfiniteLoading from "v3-infinite-loading"
+import "v3-infinite-loading/lib/style.css"
+
+
 export default {
+  components: {
+    "infinite-loading": InfiniteLoading,
+  },
+
+
   data() {
     return {
       text: '',
       favs: [],
-      loading: false,
       page: 0,
 
     }
   },
 
-  created() {
-    this.loadMore();
-  },
 
   methods: {
-    async fetchData() {
-      const url = 'http://localhost:5000/search';
-      let res = await (await fetch(url)).json()
-
-      if (this.page == 3) {
-        res = [];
-        this.loading = false;
-      }
-      if (res.length != 0) {
-        this.favs = [...this.favs, ...res];
-        this.loading = false;
+    async load($state) {
+      console.log("loading...", $state);
+      try {
+        const response = await fetch("http://localhost:5000/search");
+        const json = await response.json();
+        if (json.length < 10) {
+          $state.complete();
+        }
+        else {
+          this.favs.push(...json);
+          $state.loaded();
+        }
         this.page++;
+      } catch (error) {
+        $state.error();
       }
-      else {
-        console.log('已经到最后了！')
-      }
-
     },
 
     do_search() {
-      console.log('user enter search');
-      this.favs = [];
       this.page = 0;
-      this.fetchData();
+      this.favs = [];
     },
 
 
-    handleScroll() {
-      const container = this.$refs.containerRef;
-      if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
-        this.loadMore()
-        console.log('到底了', this.page);
-      }
-    },
-
-
-    loadMore() {
-      if (this.loading) return;
-      this.loading = true;
-      this.fetchData(this.page)
-    },
   },
 
 }
 </script>
 
-<style scoped>
-.container {
-  height: 500px;
-  overflow: auto;
-}
-</style>
 
