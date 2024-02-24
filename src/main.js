@@ -2,8 +2,8 @@
 import { createApp } from 'vue'
 
 
-import App from './App.vue'
-createApp(App).mount('#app')
+// import App from './App.vue'
+// createApp(App).mount('#app')
 
 
 // import AppBySelf from './AppBySelf.vue'
@@ -35,3 +35,12 @@ createApp(App).mount('#app')
 
 // import MyScroll3Party from './MyScroll3Party.vue'
 // createApp(MyScroll3Party).mount('#app');
+
+
+import MyElementPlus from './MyElementPlus.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+const app = createApp(MyElementPlus)
+// app.component("ElementPlus", ElementPlus);
+app.use(ElementPlus)
+app.mount('#app')
