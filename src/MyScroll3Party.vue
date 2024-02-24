@@ -1,5 +1,5 @@
 <style scoped>
-#app {
+#container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,12 +26,13 @@
 
 
 <template>
-  <div id="app">
+  <div id="container">
+    <input v-model="text" style="width: 81%;"/>
     <div class="result" v-for="comment in comments" :key="comment.id">
       <div>{{ comment.email }}</div>
       <div>{{ comment.id }}</div>
     </div>
-    <infinite-loading target="#app" @infinite="load"></infinite-loading>
+    <infinite-loading target="#container" @infinite="load"></infinite-loading>
   </div>
 </template>
 
@@ -51,6 +52,7 @@ export default {
 
   data() {
     return {
+      text:'',
       comments: [],
       page: 1,
     }
