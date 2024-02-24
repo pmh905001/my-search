@@ -6,11 +6,8 @@
   gap: 10px;
   padding: 20px;
   margin: 20px auto 20px auto;
-  max-height: calc(100vh - 100px);
-  /* max-height: calc(100vh - 100px); */
-  /* max-width: 400px; */
+  max-height: calc(100vh - 200px);
   max-width: 100%;
-  /* overflow-y: scroll; */
   overflow-y: auto;
 }
 
@@ -23,20 +20,11 @@
   border-radius: 10px;
 }
 
-#favheader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 </style>
 
 <template>
-  <div id="favheader">
-    <input v-model="text" @keyup.enter="do_search"  style="width: 78%;">{{ page }}
-  </div>
-  
-
   <div id="container">
+    <input v-model="text" @keyup.enter="do_search"  style="width: 82%;">{{ page }}
     <div class="result" v-for="fav in favs" :key="fav.id">
       <div>{{ fav.title }}</div>
       <div>{{ fav.url }}</div>
@@ -44,7 +32,6 @@
     <infinite-loading target="#container" @infinite="load"></infinite-loading>
   </div>
 </template>
-
 
 
 <script>
@@ -94,6 +81,7 @@ export default {
 
 
   },
+
 
 }
 </script>

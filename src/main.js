@@ -2,8 +2,8 @@
 import { createApp } from 'vue'
 
 
-// import App from './App.vue'
-// createApp(App).mount('#app')
+import App from './App.vue'
+createApp(App).mount('#app')
 
 
 // import AppBySelf from './AppBySelf.vue'
@@ -33,5 +33,5 @@ import { createApp } from 'vue'
 // app.component("infinite-loading", InfiniteLoading);
 // app.mount("#app");
 
-import MyScroll3Party from './MyScroll3Party.vue'
-createApp(MyScroll3Party).mount('#app');
+// import MyScroll3Party from './MyScroll3Party.vue'
+// createApp(MyScroll3Party).mount('#app');
