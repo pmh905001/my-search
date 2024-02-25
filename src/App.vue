@@ -24,7 +24,7 @@
 
 <template>
   <div id="container">
-    <el-input v-model="text" style="width: 82%;" clearable="true"/>{{ page }}
+    <el-input v-model="text" style="width: 82%;" clearable @keyup.enter="do_search" />{{ page }}
     <div class="result" v-for="fav in favs" :key="fav.id">
       <div>{{ fav.title }}</div>
       <div>{{ fav.url }}</div>
