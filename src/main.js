@@ -2,12 +2,12 @@
 import { createApp } from 'vue'
 
 
-// import App from './App.vue'
-// import ElementPlus from 'element-plus'
-// import 'element-plus/dist/index.css'
-// const app = createApp(App);
-// app.use(ElementPlus)
-// app.mount('#app')
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+const app = createApp(App);
+app.use(ElementPlus)
+app.mount('#app')
 
 
 // import AppBySelf from './AppBySelf.vue'
@@ -41,13 +41,12 @@ import { createApp } from 'vue'
 // createApp(MyScroll3Party).mount('#app');
 
 
-import MyElementPlus from './MyElementPlus.vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-const app = createApp(MyElementPlus);
-// app.component("ElementPlus", ElementPlus);
-app.use(ElementPlus)
-app.mount('#app')
+// import MyElementPlus from './MyElementPlus.vue'
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
+// const app = createApp(MyElementPlus);
+// app.use(ElementPlus)
+// app.mount('#app')
 
 
 // import AppInfiniteLoading from './AppInfiniteLoading.vue'

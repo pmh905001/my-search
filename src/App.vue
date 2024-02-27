@@ -59,7 +59,8 @@ export default {
     async load($state) {
       console.log("loading...", $state);
       try {
-        const response = await fetch("http://localhost:5000/search");
+        const url=`http://localhost:5000/search?keywords=${this.text}&&page=${this.page+1}`
+        const response = await fetch(url);
         const json = await response.json();
         if (json.length < 10) {
           $state.complete();
