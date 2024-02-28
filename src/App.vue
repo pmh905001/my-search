@@ -20,14 +20,35 @@
   border-radius: 10px;
 }
 
+
+.content {
+  margin-bottom: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    max-height: 84px;
+    font-size: 18px;
+    line-height: 28px;
+    word-break: break-all;
+    color: #222;
+}
+
 </style>
 
 <template>
   <div id="container">
     <el-input v-model="text" style="width: 82%;" clearable @keyup.enter="do_search" />{{ page }}
     <div class="result" v-for="fav in favs" :key="fav.id">
-      <div>{{ fav.title }}</div>
-      <div>{{ fav.url }}</div>
+      <div v-if="fav.title" class="content">{{ fav.title }}</div>
+      <!-- <div v-else>{{ fav.content }}</div> -->
+      <!-- <div v-else v-html="fav.rich_content" class="content"></div> -->
+      <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
+
+      <div v-if="fav.url">{{ fav.url }}</div>
+      <div v-else-if="fav.share_url">{{ fav.share_url }}</div>
+      <div v-else-if="fav.share_info && fav.share_info.share_url">{{ fav.share_info.share_url }}</div>
     </div>
     <infinite-loading target="#container" @infinite="load"></infinite-loading>
   </div>
