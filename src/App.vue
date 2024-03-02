@@ -6,7 +6,7 @@
   gap: 10px;
   padding: 20px;
   margin: 20px auto 20px auto;
-  max-height: calc(100vh - 200px);
+  max-height: calc(100vh - 110px);
   max-width: 100%;
   overflow-y: auto;
 }
@@ -23,18 +23,17 @@
 
 .content {
   margin-bottom: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    max-height: 84px;
-    font-size: 18px;
-    line-height: 28px;
-    word-break: break-all;
-    color: #222;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  max-height: 84px;
+  font-size: 18px;
+  line-height: 28px;
+  word-break: break-all;
+  color: #222;
 }
-
 </style>
 
 <template>
@@ -58,6 +57,8 @@
 <script>
 import InfiniteLoading from "v3-infinite-loading"
 import "v3-infinite-loading/lib/style.css"
+import axios from 'axios';
+
 
 
 export default {
@@ -77,23 +78,43 @@ export default {
 
 
   methods: {
-    async load($state) {
+    // async load($state) {
+    //   console.log("loading...", $state);
+    //   try {
+    //     const url = `http://localhost:5000/search?keywords=${this.text}&&page=${this.page + 1}`
+    //     const response = await fetch(url);
+    //     const json = await response.json();
+    //     if (json.length < 10) {
+    //       $state.complete();
+    //     }
+    //     else {
+    //       this.favs.push(...json);
+    //       $state.loaded();
+    //     }
+    //     this.page++;
+    //   } catch (error) {
+    //     $state.error();
+    //   }
+    // },
+
+
+    load($state) {
       console.log("loading...", $state);
-      try {
-        const url=`http://localhost:5000/search?keywords=${this.text}&&page=${this.page+1}`
-        const response = await fetch(url);
-        const json = await response.json();
-        if (json.length < 10) {
-          $state.complete();
-        }
-        else {
-          this.favs.push(...json);
+      const url = `http://localhost:5000/search?keywords=${this.text}&&page=${this.page + 1}`
+      axios.get(url)
+        .then(response => {
+          console.log(response.data);
+          if (response.data.length < 10) {
+            $state.complete();
+          }
+          this.favs.push(...response.data);
           $state.loaded();
-        }
-        this.page++;
-      } catch (error) {
-        $state.error();
-      }
+          this.page++;
+        })
+        .catch(error => {
+          console.error(error);
+          $state.error();
+        });
     },
 
     do_search() {
@@ -101,11 +122,8 @@ export default {
       this.favs = [];
     },
 
-
   },
 
 
 }
 </script>
-
-
