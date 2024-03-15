@@ -37,21 +37,49 @@
 </style>
 
 <template>
-  <div id="container">
-    <el-input v-model="text" style="width: 82%;" clearable @keyup.enter="do_search" />{{ page }}
-    <div class="result" v-for="fav in favs" :key="fav.id">
-      <div v-if="fav.title" class="content">{{ fav.title }}</div>
-      <!-- <div v-else>{{ fav.content }}</div> -->
-      <!-- <div v-else v-html="fav.rich_content" class="content"></div> -->
-      <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
 
-      <div v-if="fav.url">{{ fav.url }}</div>
-      <div v-else-if="fav.share_url">{{ fav.share_url }}</div>
-      <div v-else-if="fav.share_info && fav.share_info.share_url">{{ fav.share_info.share_url }}</div>
-    </div>
-    <infinite-loading target="#container" @infinite="load"></infinite-loading>
-  </div>
+  <el-container>
+    <el-header>
+      <el-row>
+        <el-col :span="3">
+          <el-image src="https://www.baidu.com/img/flexible/logo/pc/result.png" alt="logo" width="100px" height="100px" />
+        </el-col>
+        <el-col :span="21">
+          <h1 align="center">打造您个人的收藏空间</h1>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24">
+          <el-input v-model="text" clearable @keyup.enter="do_search" />
+        </el-col>
+      </el-row>
+    </el-header>
+    <el-main>
+      <div id="container">
+        <div class="result" v-for="fav in favs" :key="fav.id">
+          <div v-if="fav.title" class="content">{{ fav.title }}</div>
+          <!-- <div v-else>{{ fav.content }}</div> -->
+          <!-- <div v-else v-html="fav.rich_content" class="content"></div> -->
+          <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
+
+          <div v-if="fav.url">{{ fav.url }}</div>
+          <div v-else-if="fav.share_url">{{ fav.share_url }}</div>
+          <div v-else-if="fav.share_info && fav.share_info.share_url">{{ fav.share_info.share_url }}</div>
+        </div>
+        <infinite-loading target="#container" @infinite="load"></infinite-loading>
+
+      </div>
+    </el-main>
+    <el-backtop :right="100" :bottom="100" />
+  </el-container>
+
+
 </template>
+
+
+
+
+
 
 
 <script>
