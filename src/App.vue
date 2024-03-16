@@ -63,18 +63,15 @@
           <!-- <div v-else v-html="fav.rich_content" class="content"></div> -->
           <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
 
-          <div v-if="fav.url">{{ fav.url }}</div>
-          <div v-else-if="fav.share_url">{{ fav.share_url }}</div>
-          <div v-else-if="fav.share_info && fav.share_info.share_url">{{ fav.share_info.share_url }}</div>
+          <div v-if="fav.url">{{ fav.url }} <a :href="fav.url" target="_blank">here</a></div>
+          <div v-else-if="fav.share_url">{{ fav.share_url }}<a :href="fav.share_url" target="_blank">here</a></div>
+          <div v-else-if="fav.share_info && fav.share_info.share_url">{{ fav.share_info.share_url }}<a :href="fav.share_info.share_url" target="_blank">here</a></div>
         </div>
         <infinite-loading target="#container" @infinite="load"></infinite-loading>
 
       </div>
     </el-main>
-    <el-backtop :right="100" :bottom="100" />
   </el-container>
-
-
 </template>
 
 
