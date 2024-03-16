@@ -39,12 +39,14 @@ export default {
     }
 
     const fetchData = async (pageIndex) => {
-      const url = 'http://localhost:5000/search';
+      // const url = 'http://localhost:5000/search';
+      const url = 'https://my-json-server.typicode.com/pmh905001/my-search/app1';
 
       let result= await (await fetch(url)).json();
       console.log(result);
       return result;
     }
+
 
 
  

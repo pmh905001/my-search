@@ -45,7 +45,8 @@ export default {
     },
 
     async fetchData(pageIndex) {
-      const url = 'http://localhost:5000/search';
+      // const url = 'http://localhost:5000/search';
+      const url = 'https://my-json-server.typicode.com/pmh905001/my-search/app1';
       let result = await (await fetch(url)).json();
       return result;
     }
@@ -66,7 +67,7 @@ export default {
 
 <style scoped>
 .container {
-  height: 300px;
+  height: 200px;
   overflow: auto;
 }
 </style>
