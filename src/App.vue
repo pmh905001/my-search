@@ -6,7 +6,7 @@
   gap: 10px;
   padding: 20px;
   margin: 20px auto 20px auto;
-  max-height: calc(100vh - 110px);
+  max-height: calc(100vh - 200px);
   max-width: 100%;
   overflow-y: auto;
 }
