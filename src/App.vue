@@ -51,7 +51,7 @@
       </el-row>
       <el-row>
         <el-col :span="24">
-          <el-input v-model="text" clearable @keyup.enter="do_search" />
+          <el-input v-model="text" clearable @keyup.enter="do_search"  placeholder="搜索你喜欢的东西" :prefix-icon="Search"/>
         </el-col>
       </el-row>
     </el-header>
@@ -86,7 +86,7 @@
 <script>
 import InfiniteLoading from "v3-infinite-loading"
 import "v3-infinite-loading/lib/style.css"
-import axios from 'axios';
+import axios from 'axios'
 
 
 
