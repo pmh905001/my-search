@@ -15,7 +15,8 @@ export default {
 
   methods: {
     async fetchData() {
-      const url = 'http://localhost:5000/search';
+      // const url = 'http://localhost:5000/search';
+      const url = 'https://my-json-server.typicode.com/pmh905001/my-search/app1'
       this.favs = await (await fetch(url)).json()
       console.log(this.favs)
     },

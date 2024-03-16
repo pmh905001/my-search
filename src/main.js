@@ -10,6 +10,10 @@ app.use(ElementPlus)
 app.mount('#app')
 
 
+// import App1 from './App1.vue'
+// createApp(App1).mount('#app')
+
+
 // import AppBySelf from './AppBySelf.vue'
 // createApp(AppBySelf).mount('#app')
 

@@ -32,7 +32,9 @@ export default {
 
   methods: {
     async fetchData() {
-      const url = 'http://localhost:5000/search';
+      // const url = 'http://localhost:5000/search';
+      const url = 'https://my-json-server.typicode.com/pmh905001/my-search/app1'
+
       let res = await (await fetch(url)).json()
 
       if (this.page == 3) {
