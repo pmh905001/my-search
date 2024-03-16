@@ -42,7 +42,8 @@
     <el-header>
       <el-row>
         <el-col :span="3">
-          <el-image src="https://www.baidu.com/img/flexible/logo/pc/result.png" alt="logo" width="100px" height="100px" />
+          <!-- <el-image src="https://www.baidu.com/img/flexible/logo/pc/result.png" alt="logo" width="202px" height="66px" /> -->
+          <img alt="logo" class="logo" src="./assets/myfavs.png" width="202" height="66" />
         </el-col>
         <el-col :span="21">
           <h1 align="center">打造您个人的收藏空间</h1>
