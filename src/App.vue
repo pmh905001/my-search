@@ -51,7 +51,7 @@
       </el-row>
       <el-row>
         <el-col :span="24">
-          <el-input v-model="text" clearable @keyup.enter="do_search"  placeholder="搜索你喜欢的东西" :prefix-icon="Search"/>
+          <el-input v-model="text" clearable @keyup.enter="do_search"  placeholder="搜索您在头条收藏的东西" :prefix-icon="Search" />
         </el-col>
       </el-row>
     </el-header>
