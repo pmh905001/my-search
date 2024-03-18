@@ -27,3 +27,7 @@ npm run dev
 ```sh
 npm run build
 ```
+
+# backgroud
+收藏很多文章到今日头条，自带的搜索功能连个关键字都搜索不出来，只能自己去翻阅。自己用python定时爬取自己我的收藏到ES（参考https://gitee.com/pmh905001/myfavorite 或者 https://github.com/pmh905001/myfavorite）前端用vue3展现并且可以搜索。
+- <img src="screenshot.png" alt="UI" title="UI">
