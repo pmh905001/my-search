@@ -30,4 +30,6 @@ npm run build
 
 # backgroud
 收藏很多文章到今日头条，自带的搜索功能连个关键字都搜索不出来，只能自己去翻阅。自己用python定时爬取自己我的收藏到ES（参考https://gitee.com/pmh905001/myfavorite 或者 https://github.com/pmh905001/myfavorite）前端用vue3展现并且可以搜索。
+另外收藏的文章过一段时间后，可能被作者删除，当我们需要查看这些信息的时候已经找不到丁点的信息了。所以需要一个地方可以永久保存这些收藏的文章。
 - <img src="screenshot.png" alt="UI" title="UI">
+- <img src="already_deleted.png" alt="UI" title="UI">
