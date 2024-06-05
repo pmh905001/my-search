@@ -52,29 +52,38 @@
       </el-row>
       <el-row>
         <el-col :span="24">
-          <el-input v-model="text" clearable @keyup.enter="do_search"  placeholder="搜索您在头条收藏的东西" :prefix-icon="Search" />
+          <el-input v-model="text" clearable @keyup.enter="do_search" placeholder="搜索您在头条收藏的东西" :prefix-icon="Search" />
         </el-col>
       </el-row>
     </el-header>
-    <el-main>
-      <div id="container">
-        <div class="result" v-for="fav in favs" :key="fav.id">
-          <div v-if="fav.title" class="content">{{ fav.title }}</div>
-          <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
-          <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_title"  class="content">{{ fav.comment_base.share.share_title }}</div>
-          <div v-else  class="content">{{ fav}}</div>
 
-          <div v-if="fav.url"  class="content"><a :href="fav.url" target="_blank">here</a></div>
-          <div v-else-if="fav.share_url"  class="content"><a :href="fav.share_url" target="_blank">here</a></div>
-          <div v-else-if="fav.share_info && fav.share_info.share_url"  class="content"><a :href="fav.share_info.share_url" target="_blank">here</a></div>
-          <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_url"  class="content"><a :href="fav.comment_base.share.share_url" target="_blank">here</a></div>
-          <div v-else-if="fav.schema"  class="content"><a :href="fav.schema" target="_blank">here</a></div>
-          <div v-else >{{ fav}}</div>
+    <el-container>
+      <el-aside width="600px">
+        <div id="container" >
+          <div class="result" v-for="fav in favs" :key="fav.id">
+            <div v-if="fav.title" class="content">{{ fav.title }}</div>
+            <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
+            <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_title"
+              class="content">{{ fav.comment_base.share.share_title }}</div>
+            <div v-else class="content">{{ fav }}</div>
+
+            <div v-if="fav.url" class="content"><a :href="fav.url" target="_blank">here</a></div>
+            <div v-else-if="fav.share_url" class="content"><a :href="fav.share_url" target="_blank">here</a></div>
+            <div v-else-if="fav.share_info && fav.share_info.share_url" class="content"><a
+                :href="fav.share_info.share_url" target="_blank">here</a></div>
+            <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_url"
+              class="content"><a :href="fav.comment_base.share.share_url" target="_blank">here</a></div>
+            <div v-else-if="fav.schema" class="content"><a :href="fav.schema" target="_blank">here</a></div>
+            <div v-else>{{ fav }}</div>
+          </div>
+          <infinite-loading target="#container" @infinite="load"></infinite-loading>
+
         </div>
-        <infinite-loading target="#container" @infinite="load"></infinite-loading>
+      </el-aside>
+      <el-main>Main</el-main>
+    </el-container>
 
-      </div>
-    </el-main>
+
   </el-container>
 </template>
 
