@@ -61,7 +61,7 @@
       <el-aside width="600px">
         <div id="container" >
           <div class="result" v-for="fav in favs" :key="fav.id">
-            <div v-if="fav.title" class="content">{{ fav.title }}</div>
+            <div v-if="fav.title" class="content" @click="handleSelect(fav.md_content)">{{ fav.title }}</div>
             <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
             <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_title"
               class="content">{{ fav.comment_base.share.share_title }}</div>
@@ -80,7 +80,12 @@
 
         </div>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+        <br/>
+        <code>
+           {{ selected_fav }}
+        </code>
+      </el-main>
     </el-container>
 
 
@@ -97,6 +102,7 @@
 import InfiniteLoading from "v3-infinite-loading"
 import "v3-infinite-loading/lib/style.css"
 import axios from 'axios'
+import { selectGroupKey } from "element-plus";
 
 
 
@@ -111,7 +117,7 @@ export default {
       text: '',
       favs: [],
       page: 0,
-
+      selected_fav: null,
     }
   },
 
@@ -161,7 +167,15 @@ export default {
       this.favs = [];
     },
 
-  },
+
+
+    handleSelect(md_content) {
+      this.selected_fav=md_content;
+      console.log(md_content);
+    },
+
+}
+    
 
 
 }
