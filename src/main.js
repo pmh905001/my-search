@@ -55,3 +55,14 @@ app.mount('#app')
 
 // import AppInfiniteLoading from './AppInfiniteLoading.vue'
 // createApp(AppInfiniteLoading).mount('#app')
+
+
+
+
+
+// import MyMarkdown from './MyMarkdown.vue'
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
+// const app = createApp(MyMarkdown);
+// app.use(ElementPlus)
+// app.mount('#app')

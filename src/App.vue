@@ -80,11 +80,10 @@
 
         </div>
       </el-aside>
+
       <el-main>
         <br/>
-        <code>
-           {{ selected_fav }}
-        </code>
+          <Markdown :source="selected_fav" />
       </el-main>
     </el-container>
 
@@ -102,13 +101,18 @@
 import InfiniteLoading from "v3-infinite-loading"
 import "v3-infinite-loading/lib/style.css"
 import axios from 'axios'
-import { selectGroupKey } from "element-plus";
+// import { selectGroupKey } from "element-plus";
+// import  {Markdown}  from 'vue3-markdown-it';
+import Markdown from 'vue3-markdown-it';
 
 
 
 export default {
   components: {
+    Markdown,
     "infinite-loading": InfiniteLoading,
+    "Markdown":Markdown
+     
   },
 
 
@@ -117,7 +121,7 @@ export default {
       text: '',
       favs: [],
       page: 0,
-      selected_fav: null,
+      selected_fav: '',      
     }
   },
 
@@ -171,7 +175,8 @@ export default {
 
     handleSelect(md_content) {
       this.selected_fav=md_content;
-      console.log(md_content);
+      // console.log(md_content);
+      console.log(typeof md_content);
     },
 
 }
