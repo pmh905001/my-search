@@ -61,11 +61,11 @@
       <el-aside width="600px">
         <div id="container" >
           <div class="result" v-for="fav in favs" :key="fav.id">
-            <div v-if="fav.title" class="content" @click="handleSelect(fav.md_content)">{{ fav.title }}</div>
-            <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content"></div>
+            <div v-if="fav.title" class="content" @click="handleSelect(fav.md_content?fav.md_content:fav )">{{ fav.title }}</div>
+            <div v-else-if="fav.rich_content" v-html="fav.rich_content" class="content" @click="handleSelect(fav.rich_content )"></div>
             <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_title"
-              class="content">{{ fav.comment_base.share.share_title }}</div>
-            <div v-else class="content">{{ fav }}</div>
+              class="content"  @click="handleSelect(fav.comment_base.share.share_title )">{{ fav.comment_base.share.share_title }}</div>
+            <div v-else class="content" @click="handleSelect(fav )">[无文字]</div>
 
             <div v-if="fav.url" class="content"><a :href="fav.url" target="_blank">here</a></div>
             <div v-else-if="fav.share_url" class="content"><a :href="fav.share_url" target="_blank">here</a></div>
@@ -174,9 +174,11 @@ export default {
 
 
     handleSelect(md_content) {
-      this.selected_fav=md_content;
-      // console.log(md_content);
-      console.log(typeof md_content);
+      this.selected_fav=typeof md_content == 'string' ? md_content:md_content.md_content;
+      if (typeof md_content != 'string'){
+        console.log(md_content);
+      }
+      
     },
 
 }
