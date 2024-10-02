@@ -75,6 +75,8 @@
               class="content"><a :href="fav.comment_base.share.share_url" target="_blank">here</a></div>
             <div v-else-if="fav.schema" class="content"><a :href="fav.schema" target="_blank">here</a></div>
             <div v-else>{{ fav }}</div>
+
+            <!-- <div class="content"  @click="handleSelect(fav.comment_base.share.share_title )> Remove </div> -->
           </div>
           <infinite-loading target="#container" @infinite="load"></infinite-loading>
 
@@ -180,6 +182,23 @@ export default {
       }
       
     },
+
+    
+
+    remove(_id) {
+      const url = `http://localhost:5000/remove`
+      axios.delete(url,{id:_id})
+        .then(response => {
+          this.favs=this.favs.filter(item => item._id==_id);
+         
+        })
+        .catch(error => {
+          console.error(error);
+          
+        });
+    },
+      
+      
 
 }
     
