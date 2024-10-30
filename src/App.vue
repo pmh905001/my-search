@@ -67,13 +67,23 @@
               class="content"  @click="handleSelect(fav.comment_base.share.share_title )">{{ fav.comment_base.share.share_title }}</div>
             <div v-else class="content" @click="handleSelect(fav )">[无文字]</div>
 
-            <div v-if="fav.url" class="content"><a :href="fav.url" target="_blank">here</a> &nbsp;<a href="#" @click.prevent="remove(fav._id)">Remove</a>  </div>
-            <div v-else-if="fav.share_url" class="content"><a :href="fav.share_url" target="_blank">here</a>&nbsp;<a href="#" @click.prevent="remove(fav._id)">Remove</a></div>
-            <div v-else-if="fav.share_info && fav.share_info.share_url" class="content"><a
-                :href="fav.share_info.share_url" target="_blank">here</a>&nbsp;<a href="#" @click.prevent="remove(fav._id)">Remove</a></div>
-            <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_url"
-              class="content"><a :href="fav.comment_base.share.share_url" target="_blank">here</a>&nbsp;<a href="#" @click.prevent="remove(fav._id)">Remove</a></div>
-            <div v-else-if="fav.schema" class="content"><a :href="fav.schema" target="_blank">here</a>&nbsp;<a href="#" @click.prevent="remove(fav._id)">Remove</a></div>
+            <div v-if="fav.url" class="content"><a :href="fav.url" target="_blank">here</a> &nbsp;
+              <a href="#" @click.prevent="remove(fav._id)">Remove</a>  
+            </div>
+            <div v-else-if="fav.share_url" class="content"><a :href="fav.share_url" target="_blank">here</a>&nbsp;
+              <a href="#" @click.prevent="remove(fav._id)">Remove</a>
+            </div>
+            <div v-else-if="fav.share_info && fav.share_info.share_url" class="content">
+              <a :href="fav.share_info.share_url" target="_blank">here</a>&nbsp;
+              <a href="#" @click.prevent="remove(fav._id)">Remove</a>
+            </div>
+            <div v-else-if="fav.comment_base && fav.comment_base.share && fav.comment_base.share.share_url" class="content">
+              <a :href="fav.comment_base.share.share_url" target="_blank">here</a>&nbsp;
+              <a href="#" @click.prevent="remove(fav._id)">Remove</a>
+            </div>
+            <div v-else-if="fav.schema" class="content"><a :href="fav.schema" target="_blank">here</a>&nbsp;
+              <a href="#" @click.prevent="remove(fav._id)">Remove</a>
+            </div>
             <div v-else>{{ fav }}</div>
 
             <!-- <div class="content"  @click="handleSelect(fav.comment_base.share.share_title )> Remove </div> -->
@@ -151,6 +161,7 @@ export default {
 
     load($state) {
       console.log("loading...", $state);
+      // const url = `http://116.205.175.121:5000/search?keywords=${this.text}&&page=${this.page + 1}`
       const url = `http://localhost:5000/search?keywords=${this.text}&&page=${this.page + 1}`
       axios.get(url)
         .then(response => {
